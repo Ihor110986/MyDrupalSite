@@ -23,6 +23,7 @@
         "drupal/core-recommended": "^9.3",
         "drupal/ds": "^3.13",
         "drupal/paragraphs": "^1.14",
+        "drupal/pathauto": "^1.10",
         "drush/drush": "^11.0",
         "sudo/assets": "^1.0"
     },
