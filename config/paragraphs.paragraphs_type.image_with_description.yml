@@ -1,0 +1,10 @@
+uuid: eda86813-f43d-49be-9c09-bc5862bc2d78
+langcode: en
+status: true
+dependencies: {  }
+id: image_with_description
+label: 'Image with description'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

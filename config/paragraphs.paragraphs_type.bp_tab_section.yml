@@ -1,0 +1,12 @@
+uuid: 7dd49779-7080-416f-9217-e35864c74f49
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: k0udKrM5XUBI_G5XgJlR1SbgvcS4yvgtjSxcdXgS0Mo
+id: bp_tab_section
+label: 'Tab Section'
+icon_uuid: null
+icon_default: null
+description: null
+behavior_plugins: {  }

@@ -1,0 +1,23 @@
+uuid: 82303539-855e-4c37-b9d3-e77aaf623c4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_variant
+    - node.type.page
+  module:
+    - options
+id: node.page.field_variant
+field_name: field_variant
+entity_type: node
+bundle: page
+label: Variant
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 'Simple page'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

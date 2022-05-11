@@ -16,16 +16,20 @@
     ],
     "require": {
         "composer/installers": "^1.9",
+        "drupal/bootstrap": "^3.24",
+        "drupal/bootstrap_paragraphs": "^2.0@beta",
         "drupal/core-composer-scaffold": "^9.3",
         "drupal/core-project-message": "^9.3",
         "drupal/core-recommended": "^9.3",
+        "drupal/ds": "^3.13",
+        "drupal/paragraphs": "^1.14",
         "drush/drush": "^11.0",
         "sudo/assets": "^1.0"
     },
     "conflict": {
       "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
       "sort-packages": true,

@@ -1,0 +1,67 @@
+uuid: 710096ad-3aca-4e09-accb-2c2f4340a9b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image_with_description.field_description
+    - field.field.paragraph.image_with_description.field_media_image
+    - field.field.paragraph.image_with_description.field_title
+    - paragraphs.paragraphs_type.image_with_description
+  module:
+    - ds
+    - media
+    - text
+third_party_settings:
+  ds:
+    layout:
+      id: ds_2col
+      library: ds/ds_2col
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        classes:
+          layout_class: {  }
+        wrappers:
+          left: div
+          right: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        label: ''
+    regions:
+      left:
+        - field_media_image
+      right:
+        - field_title
+        - field_description
+id: paragraph.image_with_description.default
+targetEntityType: paragraph
+bundle: image_with_description
+mode: default
+content:
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: right
+  field_media_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+    third_party_settings: {  }
+    weight: 0
+    region: left
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: right
+hidden: {  }

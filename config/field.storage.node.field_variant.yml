@@ -1,0 +1,27 @@
+uuid: 3cf08862-cee8-4828-b71d-90fe3b91f152
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_variant
+field_name: field_variant
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'Simple page'
+      label: 'Simple page'
+    -
+      value: 'About us'
+      label: 'About us'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

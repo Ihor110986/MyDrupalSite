@@ -1,0 +1,30 @@
+uuid: 62f39cae-dd40-4b17-b8ab-4e2ef4231109
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.complex_page.field_paragraphs
+    - node.type.complex_page
+  module:
+    - entity_reference_revisions
+    - user
+id: node.complex_page.default
+targetEntityType: node
+bundle: complex_page
+mode: default
+content:
+  field_paragraphs:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }
