@@ -35,5 +35,4 @@ function task_update_9150() {
     ])->save();
   }
 }
-
 ?>
