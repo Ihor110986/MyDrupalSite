@@ -1,0 +1,39 @@
+<?php
+
+use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\taxonomy\Entity\Term;
+
+
+
+/**
+ * Add some terms to the Supervisors vocabulary.
+ */
+function task_update_9150() {
+  $vid = 'task';
+  $vocabulary = Vocabulary::load($vid);
+  if (!isset($vocabulary)) {
+    Vocabulary::create([
+      'vid' => $vid,
+      'description' => '',
+      'name' => 'Supervisors',
+    ])->save();
+  }
+
+  // Term names to be added.
+  $items = [
+    'Mariana',
+    'Artem',
+  ];
+  foreach ($items as $item) {
+    $term = Term::create([
+      'parent' => [],
+      'name' => $item,
+      'vid' => $vid,
+      'description' => [
+        'value' => 'description'
+      ],
+    ])->save();
+  }
+}
+
+?>

@@ -1,0 +1,25 @@
+uuid: 4cdee5bf-742c-47e8-b1b7-3e6f9d65c500
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:32fc52c8-40e1-4c5f-b8a5-7bd64ee9d594'
+  module:
+    - block_content
+  theme:
+    - olivero
+id: testblock
+theme: olivero
+region: sidebar
+weight: -7
+provider: null
+plugin: 'block_content:32fc52c8-40e1-4c5f-b8a5-7bd64ee9d594'
+settings:
+  id: 'block_content:32fc52c8-40e1-4c5f-b8a5-7bd64ee9d594'
+  label: 'Test block'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

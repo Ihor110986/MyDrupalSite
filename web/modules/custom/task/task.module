@@ -1,0 +1,138 @@
+<?php
+
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\node\Entity\Node;
+
+/**
+ * @file
+ * Provides a task entity type.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\task\Entity\Task;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function task_theme() {
+  return [
+    'task' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for task templates.
+ *
+ * Default template: task.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the task information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_task(array &$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function task_user_cancel($edit, UserInterface $account, $method) {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      // Unpublish tasks.
+      $storage = \Drupal::entityTypeManager()->getStorage('task');
+      $task_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->condition('status', 1)
+        ->execute();
+      foreach ($storage->loadMultiple($task_ids) as $task) {
+        $task->set('status', FALSE);
+        $task->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      // Anonymize tasks.
+      $storage = \Drupal::entityTypeManager()->getStorage('task');
+      $task_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->execute();
+      foreach ($storage->loadMultiple($task_ids) as $task) {
+        $task->setOwnerId(0);
+        $task->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function task_user_predelete(UserInterface $account)
+{
+  // Delete tasks.
+  $storage = \Drupal::entityTypeManager()->getStorage('task');
+  $task_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->execute();
+  $tasks = $storage->loadMultiple($task_ids);
+  $storage->delete($tasks);
+  // Delete old revisions.
+  $task_ids = $storage->getQuery()
+    ->allRevisions()
+    ->condition('uid', $account->id())
+    ->execute();
+  foreach (array_keys($task_ids) as $revision_id) {
+    $storage->deleteRevision($revision_id);
+  }
+
+  /**
+   * Implements task_field_schema().
+   */
+  function task_field_schema($field)
+  {
+    switch ($field['type']) {
+      default:
+        $columns = array(
+          'value' => array(
+            'type' => 'entity_reference',
+            'not null' => FALSE,
+          ),
+        );
+        break;
+    }
+    return array(
+      'columns' => $columns,
+      'indexes' => array(
+        'value' => array('value'),
+      ),
+    );
+  }
+
+  /**
+   * @file
+   * TASK Views module help and theme functions.
+   */
+
+  /**
+   * Implements hook_theme().
+   */
+  function task_theme($existing, $type, $theme, $path) {
+    // Store TASK preprocess theme functions in a separate .inc file.
+    \Drupal::moduleHandler()->loadInclude('task', 'inc', 'task.theme');
+
+    return array(
+      'task' => array(
+        'file' => 'task.theme.inc',
+      ),
+    );
+  }
+}

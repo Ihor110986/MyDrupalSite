@@ -1,0 +1,5 @@
+entity.task_type.collection:
+  title: 'Task types'
+  description: 'Manage and CRUD actions on Task type.'
+  parent: system.admin_structure
+  route_name: entity.task_type.collection

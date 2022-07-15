@@ -1,0 +1,35 @@
+uuid: 8d5ea783-1e8a-4adb-9a38-33d0efeac687
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.preview
+    - field.field.node.article.body
+    - field.field.node.article.field_file
+    - field.field.node.article.field_image
+    - field.field.node.article.field_media
+    - field.field.node.article.field_tags
+    - node.type.article
+  module:
+    - user
+_core:
+  default_config_hash: b4RQ-Nfz-gOoG_jjftd_qDIz4lf_-OzlxoLHkRXjfrE
+id: node.article.preview
+targetEntityType: node
+bundle: article
+mode: preview
+content:
+  field_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  field_file: true
+  field_image: true
+  field_media: true
+  links: true

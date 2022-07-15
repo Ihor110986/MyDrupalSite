@@ -1,0 +1,27 @@
+uuid: aa27203e-c5f0-4690-949b-6369b53e9fec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_file
+    - node.type.article
+  module:
+    - file
+id: node.article.field_file
+field_name: field_file
+entity_type: node
+bundle: article
+label: file
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: txt
+  max_filesize: ''
+  description_field: false
+field_type: file
